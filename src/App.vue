@@ -27,7 +27,7 @@ import LeagueTable from './components/LeagueTable.vue'
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 10dvh 8dvw;
+  padding: 10vh 8vw;
   gap: 20px;
 
   min-height: $body-height;

@@ -1,12 +1,11 @@
 <script setup lang="ts">
-withDefaults(
-  defineProps<{
-    src: string
-    alt: string
-    size?: string
-  }>(),
-  { size: '1.2em' }
-)
+type IProps = {
+  src: string
+  alt: string
+  size?: string
+}
+
+withDefaults(defineProps<IProps>(), { size: '1.2em' })
 </script>
 
 <template>
