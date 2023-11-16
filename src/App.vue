@@ -1,7 +1,35 @@
+<script setup lang="ts">
+import AppHeader from './components/AppHeader.vue'
+import { leagueTable } from './utils/mockData'
+import LeagueTable from './components/LeagueTable.vue'
+</script>
+
 <template>
-  <main>
-    <h1>Hello World!</h1>
-    <v-icon icon="fas fa-home" />
-    <v-btn prepend-icon="$vuetify" variant="outlined"> Button </v-btn>
+  <AppHeader />
+
+  <main class="main-container">
+    <LeagueTable
+      :standings="
+        leagueTable[0].league.standings[0].slice(0, leagueTable[0].league.standings[0].length / 2)
+      "
+    />
+    <LeagueTable
+      :standings="
+        leagueTable[0].league.standings[0].slice(leagueTable[0].league.standings[0].length / 2)
+      "
+    />
   </main>
 </template>
+
+<style scoped lang="scss">
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10dvh 8dvw;
+  gap: 20px;
+
+  min-height: $body-height;
+}
+</style>
