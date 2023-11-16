@@ -46,7 +46,7 @@ defineProps<Props>()
 .team-rank {
   color: $red-500;
   font-weight: 700;
-  width: 20px;
+  min-width: 20px;
 }
 
 // horizontal lines between rows
@@ -60,17 +60,23 @@ tr {
 thead {
   tr:first-child {
     border: none;
+
+    background-color: $grey-200;
   }
 }
 
 // cells styling
 thead,
 tbody {
+  td:nth-child(even) {
+    background-color: $grey-200;
+  }
+
   th,
   td {
     padding: 5px 8px;
     text-align: center;
-    width: 30px;
+    min-width: 35px;
   }
 
   th {
@@ -78,10 +84,28 @@ tbody {
     font-weight: 600;
   }
 
+  th:first-child {
+    border-radius: 10px 0 0 0;
+  }
+  th:last-child {
+    border-radius: 0 10px 0 0;
+  }
+
   th:first-child,
   td:first-child {
     text-align: start;
-    width: 250px;
+    width: 100%;
+    overflow-x: scroll;
+    white-space: nowrap;
+
+    @media (max-width: 425px) {
+      width: 50dvw;
+    }
+  }
+
+  th:first-child::-webkit-scrollbar,
+  td:first-child::-webkit-scrollbar {
+    display: none;
   }
 
   td:first-child {
