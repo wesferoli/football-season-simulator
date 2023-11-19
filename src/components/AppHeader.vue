@@ -13,7 +13,6 @@ label {
 header {
   background-color: $purple-500;
   height: $header-height;
-  padding: 0 8dvw;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-type IProps = {
+type TeamLogoProps = {
   src: string
   alt: string
   size?: string
 }
 
-withDefaults(defineProps<IProps>(), { size: '1.2em' })
+withDefaults(defineProps<TeamLogoProps>(), { size: '1.2em' })
 </script>
 
 <template>

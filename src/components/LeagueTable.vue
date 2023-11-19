@@ -15,10 +15,10 @@ defineProps<Props>()
       <thead>
         <tr>
           <th>Classificação</th>
-          <th>P</th>
-          <th>J</th>
-          <th>SG</th>
-          <th>GP</th>
+          <th title="Pontos">P</th>
+          <th title="Partidas jogadas">J</th>
+          <th title="Saldo de gol">SG</th>
+          <th title="Gols marcados">GP</th>
         </tr>
       </thead>
       <tbody>
@@ -41,85 +41,122 @@ defineProps<Props>()
 .card {
   border: solid 1px $grey-300;
   border-radius: 10px;
-}
+  overflow-x: auto;
+  height: fit-content;
+  width: 94svw; // set width because flexbox parent
 
-.team-rank {
-  color: $red-500;
-  font-weight: 700;
-  min-width: 20px;
-}
+  @media (min-width: $screen-sm) {
+    max-width: none;
+  }
 
-// horizontal lines between rows
-table {
-  border-collapse: collapse;
-  border: none;
-}
-tr {
-  border-top: solid 1px $grey-300;
-}
-thead {
-  tr:first-child {
+  .team-rank {
+    color: $red-500;
+    font-weight: 700;
+    min-width: 20px;
+  }
+
+  // horizontal lines between rows
+  table {
+    border-collapse: collapse;
     border: none;
-
-    background-color: $grey-200;
   }
-}
-
-// cells styling
-thead,
-tbody {
-  td:nth-child(even) {
-    background-color: $grey-200;
+  tr {
+    border-top: solid 1px $grey-300;
   }
-
-  th,
-  td {
-    padding: 5px 8px;
-    text-align: center;
-    min-width: 35px;
-  }
-
-  td {
-    color: $grey-700;
-  }
-
-  th {
-    color: $purple-300;
-    font-weight: 600;
-  }
-
-  th:first-child {
-    border-radius: 10px 0 0 0;
-  }
-  th:last-child {
-    border-radius: 0 10px 0 0;
-  }
-
-  th:first-child,
-  td:first-child {
-    text-align: start;
-    width: 100%;
-    overflow-x: scroll;
-    white-space: nowrap;
-
-    @media (max-width: 425px) {
-      width: 50dvw;
+  thead {
+    tr:first-child {
+      border: none;
+    }
+    th {
+      background-color: $grey-200;
     }
   }
 
-  th:first-child::-webkit-scrollbar,
-  td:first-child::-webkit-scrollbar {
-    display: none;
-  }
+  // cells styling
+  thead,
+  tbody {
+    font-size: $text-sm;
 
-  td:first-child {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+    @media (min-width: $screen-sm) {
+      font-size: $text-md;
+    }
 
-  td:nth-child(2) {
-    font-weight: 700;
+    td:nth-child(even) {
+      background-color: $grey-200;
+    }
+    td:nth-child(odd) {
+      background-color: $white;
+    }
+
+    th,
+    td {
+      padding: 5px 8px;
+      text-align: center;
+    }
+
+    th {
+      color: $purple-300;
+      font-weight: 600;
+    }
+
+    th:first-child {
+      border-radius: 10px 0 0 0;
+    }
+    th:last-child {
+      border-radius: 0 10px 0 0;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: start;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    // sticky columns
+    td:nth-child(2),
+    th:nth-child(2) {
+      min-width: 35px;
+      max-width: 35px;
+      position: sticky;
+      right: 105px;
+    }
+    td:nth-child(3),
+    th:nth-child(3) {
+      min-width: 35px;
+      max-width: 35px;
+      position: sticky;
+      right: 70px;
+    }
+    td:nth-child(4),
+    th:nth-child(4) {
+      min-width: 35px;
+      max-width: 35px;
+      position: sticky;
+      right: 35px;
+    }
+    td:nth-child(5),
+    th:nth-child(5) {
+      min-width: 35px;
+      max-width: 35px;
+      position: sticky;
+      right: 0;
+    }
+
+    th:first-child::-webkit-scrollbar,
+    td:first-child::-webkit-scrollbar {
+      display: none;
+    }
+
+    td:first-child {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    td:nth-child(2) {
+      font-weight: 700;
+    }
   }
 }
 </style>
