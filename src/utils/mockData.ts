@@ -69,7 +69,7 @@ type FixtureLongStatus =
   | 'WalkOver'
   | 'In Progress'
 
-type FixtureShortStatus =
+export type FixtureShortStatus =
   | 'TBD'
   | 'NS'
   | '1H'
