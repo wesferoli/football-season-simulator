@@ -1,3 +1,23 @@
 // Box size
 $header-height: 3rem;
 $body-height: calc(100svh - $header-height);
+
+// Font Size
+$text-xxs: 0.625rem; // 8px
+$text-xs: 0.75rem; // 12px
+$text-sm: 0.875rem; // 14px
+$text-md: 1rem; // 16px
+$text-lg: 1.125rem; // 18px
+$text-xl: 1.25rem; // 20px
+$text-2xl: 1.5rem; // 24px
+$text-3xl: 1.875rem; // 30px
+$text-4xl: 2.25rem; // 36px
+$text-5xl: 3rem; // 48px
+$text-6xl: 3.75rem; // 60px
+
+// Breakpoints
+$screen-sm: 640px;
+$screen-md: 768px;
+$screen-lg: 1024px;
+$screen-xl: 1280px;
+$screen-2xl: 1536px;
