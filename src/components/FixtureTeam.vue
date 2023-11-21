@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TeamLogo from './TeamLogo.vue'
+import TeamLogo from '@/components/TeamLogo.vue'
 
 type FixtureTeamProps = {
   teamName: string

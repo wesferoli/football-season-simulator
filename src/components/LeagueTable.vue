@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { type TeamStanding } from '../utils/mockData'
-import TeamLogo from '../components/TeamLogo.vue'
+import { type TeamStanding } from '@/utils/mockData'
+import TeamLogo from '@/components/TeamLogo.vue'
 
 type Props = {
   standings: TeamStanding[]
