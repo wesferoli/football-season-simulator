@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import FixtureTeam from './FixtureTeam.vue'
-import { isMatchFinished } from '../utils/matchStatus'
-import { getDate, getTime } from '../utils/handleDateTime'
-import type { FootballMatch } from '../utils/mockData'
+import FixtureTeam from '@/components/FixtureTeam.vue'
+import { isMatchFinished } from '@/utils/matchStatus'
+import { getDate, getTime } from '@/utils/handleDateTime'
+import { inject } from 'vue'
+import { FixturesKey } from '@/types/symbols'
 
-type LeagueMatchProps = {
-  fixtures: FootballMatch[]
-}
-
-defineProps<LeagueMatchProps>()
+const fixtures = inject(FixturesKey, [])
 </script>
 
 <template>
-  <div class="fixture-container">
-    <div class="fixture" v-for="match in fixtures" :key="match.fixture.id">
+  <ul class="fixture-container">
+    <li class="fixture" v-for="match in fixtures" :key="match.fixture.id">
       <div class="match-info">
         <span class="date">{{ getDate(match.fixture.date) }}</span>
         <span class="stadium" :title="match.fixture.venue.name">{{
@@ -52,12 +49,14 @@ defineProps<LeagueMatchProps>()
           :teamLogo="match.teams.away.logo"
         />
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </template>
 
 <style scoped lang="scss">
 .fixture-container {
+  padding-left: 0;
+
   .fixture:first-child {
     border: none;
     padding-top: 0;
@@ -67,6 +66,7 @@ defineProps<LeagueMatchProps>()
   }
 
   .fixture {
+    list-style: none;
     border-top: solid 1px $grey-300;
     padding-top: 8px;
     padding-bottom: 8px;
