@@ -1,19 +1,19 @@
 <script setup lang="ts">
-type LeagueGameweekProps = {
-  gameweek: string
-}
+import { FixturesKey } from '@/types/symbols'
+import { inject } from 'vue'
+import LeagueMatch from '@/components/LeagueMatch.vue'
 
-defineProps<LeagueGameweekProps>()
+const fixtures = inject(FixturesKey, [])
 </script>
 
 <template>
   <div class="gameweek-container">
     <nav>
       <font-awesome-icon icon="fa-solid fa-circle-arrow-left" class="icon arrow-left" />
-      <span>rodada {{ gameweek }}</span>
+      <span>rodada {{ fixtures[0].league.round.slice(-2) }}</span>
       <font-awesome-icon icon="fa-solid fa-circle-arrow-right" class="icon arrow-right" />
     </nav>
-    <slot />
+    <LeagueMatch />
   </div>
 </template>
 
@@ -49,6 +49,8 @@ defineProps<LeagueGameweekProps>()
     .icon {
       font-size: $text-lg;
       color: $purple-300;
+
+      cursor: pointer;
     }
   }
 }
