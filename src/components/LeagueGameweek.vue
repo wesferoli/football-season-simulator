@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { FixturesKey } from '@/types/symbols'
-import { inject } from 'vue'
 import LeagueMatch from '@/components/LeagueMatch.vue'
+import type { FootballMatch } from '@/utils/mockData'
 
-const fixtures = inject(FixturesKey, [])
+type LeagueGameweekProps = {
+  fixtures: FootballMatch[]
+}
+
+defineProps<LeagueGameweekProps>()
 </script>
 
 <template>
@@ -13,7 +16,11 @@ const fixtures = inject(FixturesKey, [])
       <span>rodada {{ fixtures[0].league.round.slice(-2) }}</span>
       <font-awesome-icon icon="fa-solid fa-circle-arrow-right" class="icon arrow-right" />
     </nav>
-    <LeagueMatch />
+    <ul class="fixture-container">
+      <li class="fixture" v-for="match in fixtures" :key="match.fixture.id">
+        <LeagueMatch :match="match" />
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -51,6 +58,24 @@ const fixtures = inject(FixturesKey, [])
       color: $purple-300;
 
       cursor: pointer;
+    }
+  }
+
+  .fixture-container {
+    padding-left: 0;
+
+    .fixture:first-child {
+      border: none;
+      padding-top: 0;
+    }
+    .fixture:last-child {
+      padding-bottom: 0;
+    }
+    .fixture {
+      list-style: none;
+      border-top: solid 1px $grey-300;
+      padding-top: 8px;
+      padding-bottom: 8px;
     }
   }
 }
