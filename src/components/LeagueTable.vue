@@ -22,15 +22,17 @@ defineProps<Props>()
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in standings" :key="item.rank">
+        <tr v-for="teamStats in standings" :key="teamStats.rank">
           <td>
-            <span class="team-rank">{{ item.rank }}</span>
-            <TeamLogo :src="item.team.logo" :alt="item.team.name" />{{ item.team.name }}
+            <span class="team-rank">{{ teamStats.rank }}</span>
+            <TeamLogo :src="teamStats.team.logo" :alt="teamStats.team.name" />{{
+              teamStats.team.name
+            }}
           </td>
-          <td>{{ item.points }}</td>
-          <td>{{ item.all.played }}</td>
-          <td>{{ item.goalsDiff }}</td>
-          <td>{{ item.all.goals.for }}</td>
+          <td>{{ teamStats.points }}</td>
+          <td>{{ teamStats.all.played }}</td>
+          <td>{{ teamStats.goalsDiff }}</td>
+          <td>{{ teamStats.all.goals.for }}</td>
         </tr>
       </tbody>
     </table>

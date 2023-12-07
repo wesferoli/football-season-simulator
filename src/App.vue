@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import AppHeader from '@/components/AppHeader.vue'
-import { leagueTable, matchesRound12, matchesRound13, type TeamStanding } from '@/utils/mockData'
 import LeagueTable from '@/components/LeagueTable.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import LeagueGameweek from '@/components/LeagueGameweek.vue'
-import { ref } from 'vue'
+import { useGameweek } from './composables/useGameweek'
+import { leagueTable, matchesRound12 } from './utils/mockData'
+import { useTable } from './composables/useTable'
 
-const leagueStandings = ref<TeamStanding[]>(leagueTable[0].league.standings[0])
+const { data: gameweekFixtures } = useGameweek(matchesRound12)
+const { data: leagueStandings } = useTable(leagueTable[0].league.standings[0])
 </script>
 
 <template>
@@ -23,7 +25,7 @@ const leagueStandings = ref<TeamStanding[]>(leagueTable[0].league.standings[0])
       </div>
 
       <div class="fixtures-container">
-        <LeagueGameweek :fixtures="matchesRound12" />
+        <LeagueGameweek :fixtures="gameweekFixtures" />
       </div>
     </section>
   </main>

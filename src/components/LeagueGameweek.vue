@@ -1,6 +1,6 @@
-<script setup lang="ts">
-import LeagueMatch from '@/components/LeagueMatch.vue'
-import type { FootballMatch } from '@/utils/mockData'
+<script async setup lang="ts">
+import { type FootballMatch } from '@/utils/mockData'
+import LeagueMatch from './LeagueMatch.vue'
 
 type LeagueGameweekProps = {
   fixtures: FootballMatch[]
@@ -13,7 +13,7 @@ defineProps<LeagueGameweekProps>()
   <div class="gameweek-container">
     <nav>
       <font-awesome-icon icon="fa-solid fa-circle-arrow-left" class="icon arrow-left" />
-      <span>rodada {{ fixtures[0].league.round.slice(-2) }}</span>
+      <span>rodada {{ fixtures[0]?.league.round.slice(-2) }}</span>
       <font-awesome-icon icon="fa-solid fa-circle-arrow-right" class="icon arrow-right" />
     </nav>
     <ul class="fixture-container">
