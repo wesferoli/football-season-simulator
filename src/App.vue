@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import AppHeader from '@/components/AppHeader.vue'
-import { leagueTable, matchesRound12, matchesRound13 } from '@/utils/mockData'
 import LeagueTable from '@/components/LeagueTable.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import LeagueGameweek from '@/components/LeagueGameweek.vue'
-import { provide } from 'vue'
-import { FixturesKey } from '@/types/symbols'
+import { useGameweek } from './composables/useGameweek'
+import { leagueTable, matchesRound12 } from './utils/mockData'
+import { useTable } from './composables/useTable'
 
-provide(FixturesKey, matchesRound12)
+const { data: gameweekFixtures } = useGameweek(matchesRound12)
+const { data: leagueStandings } = useTable(leagueTable[0].league.standings[0])
 </script>
 
 <template>
@@ -20,11 +21,11 @@ provide(FixturesKey, matchesRound12)
 
     <section class="simulation-section">
       <div class="table-container">
-        <LeagueTable :standings="leagueTable[0].league.standings[0]" />
+        <LeagueTable :standings="leagueStandings" />
       </div>
 
       <div class="fixtures-container">
-        <LeagueGameweek />
+        <LeagueGameweek :fixtures="gameweekFixtures" />
       </div>
     </section>
   </main>
