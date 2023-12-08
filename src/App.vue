@@ -4,10 +4,10 @@ import LeagueTable from '@/components/LeagueTable.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import LeagueGameweek from '@/components/LeagueGameweek.vue'
 import { useGameweek } from './composables/useGameweek'
-import { leagueTable, matchesRound12 } from './utils/mockData'
+import { leagueTable, matchesRound13 } from './utils/mockData'
 import { useTable } from './composables/useTable'
 
-const { data: gameweekFixtures } = useGameweek(matchesRound12)
+const { data: gameweekFixtures } = useGameweek(matchesRound13)
 const { data: leagueStandings } = useTable(leagueTable[0].league.standings[0])
 </script>
 

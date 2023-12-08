@@ -4,6 +4,7 @@ import { isMatchFinished } from '@/utils/matchStatus'
 import { computed, toRef } from 'vue'
 import type { FootballMatch } from '@/utils/mockData'
 import { getDate, getTime } from '@/utils/handleDateTime'
+import { handleNumberInput } from '@/utils/handleNumberInput'
 
 type LeagueMatchProps = {
   match: FootballMatch
@@ -36,12 +37,26 @@ const time = computed(() => {
       <span class="home-score" v-if="isMatchFinished(match.fixture.status.short)">{{
         match.goals.home
       }}</span>
-      <input class="home-score" v-if="!isMatchFinished(match.fixture.status.short)" type="text" />
+      <input
+        class="home-score"
+        v-else
+        type="text"
+        inputmode="numeric"
+        maxlength="2"
+        @input="handleNumberInput"
+      />
       <span>-</span>
       <span class="away-score" v-if="isMatchFinished(match.fixture.status.short)">{{
         match.goals.away
       }}</span>
-      <input class="away-score" v-if="!isMatchFinished(match.fixture.status.short)" type="text" />
+      <input
+        class="away-score"
+        v-else
+        type="text"
+        inputmode="numeric"
+        maxlength="2"
+        @input="handleNumberInput"
+      />
     </div>
     <FixtureTeam
       playsAt="away"
