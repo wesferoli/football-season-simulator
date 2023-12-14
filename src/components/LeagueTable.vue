@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { type TeamStanding } from '@/utils/mockData'
 import TeamLogo from '@/components/TeamLogo.vue'
+import { useStore } from '@/vuex/store'
+import { computed } from 'vue'
 
-type Props = {
-  standings: TeamStanding[]
-}
-
-defineProps<Props>()
+const store = useStore()
+const leagueTable = computed(() => store.state.leagueTable)
 </script>
 
 <template>
@@ -22,7 +20,7 @@ defineProps<Props>()
         </tr>
       </thead>
       <tbody>
-        <tr v-for="teamStats in standings" :key="teamStats.rank">
+        <tr v-for="teamStats in leagueTable" :key="teamStats.rank">
           <td>
             <span class="team-rank">{{ teamStats.rank }}</span>
             <TeamLogo :src="teamStats.team.logo" :alt="teamStats.team.name" />{{

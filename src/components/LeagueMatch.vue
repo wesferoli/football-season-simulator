@@ -35,7 +35,7 @@ const time = computed(() => {
     />
     <div class="match-score">
       <span class="home-score" v-if="isMatchFinished(match.fixture.status.short)">{{
-        match.goals.home
+        match.score.fulltime.home
       }}</span>
       <input
         class="home-score"
@@ -43,11 +43,12 @@ const time = computed(() => {
         type="text"
         inputmode="numeric"
         maxlength="2"
+        v-model="match.score.fulltime.home"
         @input="allowOnlyNumbers"
       />
       <span>-</span>
       <span class="away-score" v-if="isMatchFinished(match.fixture.status.short)">{{
-        match.goals.away
+        match.score.fulltime.away
       }}</span>
       <input
         class="away-score"
@@ -55,6 +56,7 @@ const time = computed(() => {
         type="text"
         inputmode="numeric"
         maxlength="2"
+        v-model="match.score.fulltime.away"
         @input="allowOnlyNumbers"
       />
     </div>
