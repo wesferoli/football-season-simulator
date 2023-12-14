@@ -1,16 +1,15 @@
 import { createStore, Store, useStore as baseUseStore } from 'vuex'
 import { type InjectionKey } from 'vue'
 import type { FootballMatch, TeamStanding } from '@/utils/mockData'
+import { mutations } from './mutations'
+import { actions } from './actions'
+import type { MatchResult } from '@/use-cases/calculate-match-result'
 
 export type State = {
   fixtures: FootballMatch[]
   leagueTable: TeamStanding[]
+  matchResults: MatchResult[]
 }
-type StoreFixturesMutationPayload = Pick<State, 'fixtures'>
-type StoreLeagueTableMutationPayload = Pick<State, 'leagueTable'>
-
-type StoreFixturesActionPayload = Pick<State, 'fixtures'>
-type StoreLeagueTableActionPayload = Pick<State, 'leagueTable'>
 
 export const key: InjectionKey<Store<State>> = Symbol()
 
@@ -18,25 +17,12 @@ export const store = createStore<State>({
   state() {
     return {
       fixtures: [],
-      leagueTable: []
+      leagueTable: [],
+      matchResults: []
     }
   },
-  mutations: {
-    storeFixtures(state, payload: StoreFixturesMutationPayload) {
-      state.fixtures = payload.fixtures
-    },
-    storeLeagueTable(state, payload: StoreLeagueTableMutationPayload) {
-      state.leagueTable = payload.leagueTable
-    }
-  },
-  actions: {
-    storeFixtures(context, { fixtures }: StoreFixturesActionPayload) {
-      context.commit('storeFixtures', { fixtures })
-    },
-    storeLeagueTable(context, { leagueTable }: StoreLeagueTableActionPayload) {
-      context.commit('storeLeagueTable', { leagueTable })
-    }
-  }
+  mutations,
+  actions
 })
 
 export function useStore() {

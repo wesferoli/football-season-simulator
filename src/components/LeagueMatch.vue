@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import FixtureTeam from '@/components/FixtureTeam.vue'
 import { isMatchFinished } from '@/utils/matchStatus'
-import { computed, toRef } from 'vue'
+import { computed, toRef, watch } from 'vue'
 import type { FootballMatch } from '@/utils/mockData'
 import { getDate, getTime } from '@/utils/handleDateTime'
 import { allowOnlyNumbers } from '@/utils/allowOnlyNumbers'
+import { calculateMatchResult } from '@/use-cases/calculate-match-result'
+import { useStore } from '@/vuex/store'
 
 type LeagueMatchProps = {
   match: FootballMatch
@@ -18,6 +20,18 @@ const date = computed(() => {
 })
 const time = computed(() => {
   return getTime(match.value.fixture.date)
+})
+
+const store = useStore()
+
+watch(match.value.score.fulltime, () => {
+  const matchResults = calculateMatchResult(match.value)
+
+  if (matchResults) {
+    matchResults.forEach((result) => {
+      store.dispatch('storeMatchResults', { matchResult: result })
+    })
+  }
 })
 </script>
 
