@@ -6,9 +6,23 @@ import LeagueGameweek from '@/components/LeagueGameweek.vue'
 import { useGameweek } from './composables/useGameweek'
 import { leagueTable, matchesRound13 } from './utils/mockData'
 import { useTable } from './composables/useTable'
+import { useStore } from './vuex/store'
+import { watch } from 'vue'
 
 const { data: gameweekFixtures } = useGameweek(matchesRound13)
 const { data: leagueStandings } = useTable(leagueTable[0].league.standings[0])
+const store = useStore()
+
+watch(gameweekFixtures, () => {
+  store.dispatch('storeFixtures', {
+    fixtures: gameweekFixtures.value
+  })
+})
+watch(leagueStandings, () => {
+  store.dispatch('storeLeagueTable', {
+    leagueTable: leagueStandings.value
+  })
+})
 </script>
 
 <template>
@@ -21,11 +35,11 @@ const { data: leagueStandings } = useTable(leagueTable[0].league.standings[0])
 
     <section class="simulation-section">
       <div class="table-container">
-        <LeagueTable :standings="leagueStandings" />
+        <LeagueTable />
       </div>
 
       <div class="fixtures-container">
-        <LeagueGameweek :fixtures="gameweekFixtures" />
+        <LeagueGameweek />
       </div>
     </section>
   </main>
