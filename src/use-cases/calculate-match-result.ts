@@ -12,6 +12,9 @@ export type MatchResult = {
       for: number
       against: number
     }
+    win: number
+    draw: number
+    lose: number
   }
 }
 type PossibleResults = {
@@ -44,7 +47,10 @@ export function calculateMatchResult(match: FootballMatch) {
           goals: {
             for: Number(match.score.fulltime.home),
             against: Number(match.score.fulltime.away)
-          }
+          },
+          win: 1,
+          draw: 0,
+          lose: 0
         }
       },
       {
@@ -58,7 +64,10 @@ export function calculateMatchResult(match: FootballMatch) {
           goals: {
             for: Number(match.score.fulltime.away),
             against: Number(match.score.fulltime.home)
-          }
+          },
+          win: 0,
+          draw: 0,
+          lose: 1
         }
       }
     ],
@@ -74,7 +83,10 @@ export function calculateMatchResult(match: FootballMatch) {
           goals: {
             for: Number(match.score.fulltime.home),
             against: Number(match.score.fulltime.away)
-          }
+          },
+          win: 0,
+          draw: 0,
+          lose: 1
         }
       },
       {
@@ -88,7 +100,10 @@ export function calculateMatchResult(match: FootballMatch) {
           goals: {
             for: Number(match.score.fulltime.away),
             against: Number(match.score.fulltime.home)
-          }
+          },
+          win: 1,
+          draw: 0,
+          lose: 0
         }
       }
     ],
@@ -104,7 +119,10 @@ export function calculateMatchResult(match: FootballMatch) {
           goals: {
             for: Number(match.score.fulltime.home),
             against: Number(match.score.fulltime.away)
-          }
+          },
+          win: 0,
+          draw: 1,
+          lose: 0
         }
       },
       {
@@ -118,7 +136,10 @@ export function calculateMatchResult(match: FootballMatch) {
           goals: {
             for: Number(match.score.fulltime.away),
             against: Number(match.score.fulltime.home)
-          }
+          },
+          win: 0,
+          draw: 1,
+          lose: 0
         }
       }
     ]
