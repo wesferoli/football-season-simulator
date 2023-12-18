@@ -1,19 +1,18 @@
 <script async setup lang="ts">
-import { type FootballMatch } from '@/utils/mockData'
 import LeagueMatch from './LeagueMatch.vue'
+import { useStore } from '@/vuex/store'
+import { computed } from 'vue'
 
-type LeagueGameweekProps = {
-  fixtures: FootballMatch[]
-}
-
-defineProps<LeagueGameweekProps>()
+const store = useStore()
+const fixtures = computed(() => store.state.fixtures)
+const roundNumber = computed(() => fixtures.value[0]?.league.round.slice(-2))
 </script>
 
 <template>
   <div class="gameweek-container">
     <nav>
       <font-awesome-icon icon="fa-solid fa-circle-arrow-left" class="icon arrow-left" />
-      <span>rodada {{ fixtures[0]?.league.round.slice(-2) }}</span>
+      <span>rodada {{ roundNumber }}</span>
       <font-awesome-icon icon="fa-solid fa-circle-arrow-right" class="icon arrow-right" />
     </nav>
     <ul class="fixture-container">
