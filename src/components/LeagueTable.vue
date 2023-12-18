@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import TeamLogo from '@/components/TeamLogo.vue'
+import type { TeamStanding } from '@/utils/mockData'
 import { useStore } from '@/vuex/store'
 import { computed } from 'vue'
 
 const store = useStore()
-const leagueTable = computed(() => store.getters.leagueTableWithComputedFixtures)
+const leagueTable = computed<TeamStanding[]>(() => store.getters.leagueTableWithComputedFixtures)
 </script>
 
 <template>

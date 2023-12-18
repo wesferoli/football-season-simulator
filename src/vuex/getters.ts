@@ -1,5 +1,6 @@
 import type { TeamStanding } from '@/utils/mockData'
 import type { State } from './store'
+import { reorderLeagueTable } from '@/use-cases/reorder-league-table'
 
 export const getters = {
   leagueTableWithComputedFixtures(state: State) {
@@ -21,6 +22,8 @@ export const getters = {
       }
     })
 
-    return copyLeagueTable
+    const reorderedLeagueTable = reorderLeagueTable(copyLeagueTable)
+
+    return reorderedLeagueTable
   }
 }
