@@ -4,7 +4,7 @@ import { useStore } from '@/vuex/store'
 import { computed } from 'vue'
 
 const store = useStore()
-const leagueTable = computed(() => store.state.leagueTable)
+const leagueTable = computed(() => store.getters.leagueTableWithComputedFixtures)
 </script>
 
 <template>
