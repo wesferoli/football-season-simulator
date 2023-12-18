@@ -22,7 +22,7 @@ export const actions = {
     context: ActionContext<State, State>,
     { matchResult }: StoreMatchResultActionPayload
   ) {
-    const copyMatchResults = [...context.state.matchResults]
+    const copyMatchResults: MatchResult[] = JSON.parse(JSON.stringify(context.state.matchResults))
 
     const matchResultIndex = copyMatchResults.findIndex(
       (result) =>
